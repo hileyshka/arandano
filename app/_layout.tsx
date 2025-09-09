@@ -1,29 +1,45 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { FontAwesome } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
-
+export default function Layout() {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: { backgroundColor: "#0a0a0a" },
+        tabBarActiveTintColor: "#fff",
+        tabBarInactiveTintColor: "#888",
+        tabBarLabelStyle: { fontFamily: "serif" },
+      }}
+    >
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: "Home",
+          tabBarIcon: ({ color, size }) => <FontAwesome name="home" color={color} size={size} />,
+        }}
+      />
+      <Tabs.Screen
+        name="catalogo"
+        options={{
+          title: "Catálogo",
+          tabBarIcon: ({ color, size }) => <FontAwesome name="th-list" color={color} size={size} />,
+        }}
+      />
+      <Tabs.Screen
+        name="perfil"
+        options={{
+          title: "Perfil",
+          tabBarIcon: ({ color, size }) => <FontAwesome name="user" color={color} size={size} />,
+        }}
+      />
+      <Tabs.Screen
+        name="carrito"
+        options={{
+          title: "Carrito",
+          tabBarIcon: ({ color, size }) => <FontAwesome name="shopping-cart" color={color} size={size} />,
+        }}
+      />
+    </Tabs>
   );
 }
