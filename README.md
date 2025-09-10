@@ -1,50 +1,53 @@
-# Welcome to your Expo app 👋
+# arándano App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Inicio de Proyecto de aplicación móvil de tienda de ropa y accesorios.  
+Los usuarios podrán explorar el catálogo, gestionar su carrito, guardar sus medidas y probar prendas con un modelo virtual.
 
-## Get started
+---
 
-1. Install dependencies
+## Tecnologías usadas
+- [React Native](https://reactnative.dev/) (con [Expo](https://expo.dev/))  
+- [React Navigation](https://reactnavigation.org/) para la navegación por pestañas  
+- [Supabase](https://supabase.com/) para la autenticación y almacenamiento de datos de usuarios  
+- [TypeScript](https://www.typescriptlang.org/) para tipado  
 
+---
+
+## Estructura de la App
+Actualmente la app tiene cuatro pantallas principales:  
+- Home → bienvenida y presentación de la marca.  
+- Catálogo → espacio para mostrar productos.  
+- Perfil & Medidas → permite que el usuario guarde sus medidas en Supabase.  
+- Carrito → lista de productos seleccionados para compra.  
+
+---
+
+## Estilo inicial
+- Paleta base en negro minimalista con tipografía serif.  
+- Interfaz simple con navegación inferior (bottom tabs).  
+- La estética final (colores, fuentes, imágenes) se personalizará en fases siguientes.  
+
+---
+
+## Cómo correr el proyecto
+
+Clonar el repositorio:
    ```bash
+   git clone git@github.com:hileyshka/arandano.git
+   cd arandano-app
+
+- Instalar insdependencias:
    npm install
-   ```
 
-2. Start the app
-
-   ```bash
+- Levantar el proyecto con Expo:
    npx expo start
-   ```
 
-In the output, you'll find options to open the app in a
+- Escanea el QR en tu celular con la app Expo Go.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Próximos pasos
+- Mejorar la interfaz visual (colores, tipografía y branding).
+- Ampliar el catálogo con datos reales.
+- Implementar login de usuario con Supabase.
+- Desarrollar el modelo virtual de probador de prendas.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+! Proyecto creado por Hileyshka Roig. <3
