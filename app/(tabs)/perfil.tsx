@@ -1,55 +1,70 @@
 import { useState } from "react";
-import { Alert, Button, ScrollView, Text, TextInput } from "react-native";
-import { supabase } from "../../supabase"; // ajusta la ruta si es necesario
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 
-export default function ProfileScreen() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+export default function PerfilScreen() {
+  const [nombre, setNombre] = useState("");
   const [altura, setAltura] = useState("");
   const [peso, setPeso] = useState("");
-  const [pecho, setPecho] = useState("");
-  const [cintura, setCintura] = useState("");
-  const [cadera, setCadera] = useState("");
 
-  const saveMeasurements = async () => {
-    const { data, error } = await supabase.from("users").insert([{
-      name,
-      email,
-      altura: parseFloat(altura),
-      peso: parseFloat(peso),
-      pecho: parseFloat(pecho),
-      cintura: parseFloat(cintura),
-      cadera: parseFloat(cadera),
-    }]);
-
-    if (error) {
-      Alert.alert("Error", error.message);
-    } else {
-      Alert.alert("Éxito", "Tus medidas fueron guardadas");
-      // Limpiar campos
-      setName("");
-      setEmail("");
-      setAltura("");
-      setPeso("");
-      setPecho("");
-      setCintura("");
-      setCadera("");
-    }
+  const guardar = () => {
+    console.log("Datos guardados:", { nombre, altura, peso });
+    alert("Medidas guardadas ✅ (más adelante se guardarán en Supabase)");
   };
 
   return (
-    <ScrollView className="flex-1 bg-black p-4">
-      <Text className="text-white text-2xl font-serif mb-4">Perfil & Medidas</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Mi Perfil</Text>
 
-      <TextInput placeholder="Nombre" placeholderTextColor="#888" className="bg-gray-800 text-white w-full p-2 mb-2 rounded" value={name} onChangeText={setName} />
-      <TextInput placeholder="Email" placeholderTextColor="#888" className="bg-gray-800 text-white w-full p-2 mb-2 rounded" value={email} onChangeText={setEmail} />
-      <TextInput placeholder="Altura (cm)" placeholderTextColor="#888" keyboardType="numeric" className="bg-gray-800 text-white w-full p-2 mb-2 rounded" value={altura} onChangeText={setAltura} />
-      <TextInput placeholder="Peso (kg)" placeholderTextColor="#888" keyboardType="numeric" className="bg-gray-800 text-white w-full p-2 mb-2 rounded" value={peso} onChangeText={setPeso} />
-      <TextInput placeholder="Pecho (cm)" placeholderTextColor="#888" keyboardType="numeric" className="bg-gray-800 text-white w-full p-2 mb-2 rounded" value={pecho} onChangeText={setPecho} />
-      <TextInput placeholder="Cintura (cm)" placeholderTextColor="#888" keyboardType="numeric" className="bg-gray-800 text-white w-full p-2 mb-2 rounded" value={cintura} onChangeText={setCintura} />
-      <TextInput placeholder="Cadera (cm)" placeholderTextColor="#888" keyboardType="numeric" className="bg-gray-800 text-white w-full p-2 mb-4 rounded" value={cadera} onChangeText={setCadera} />
+      <TextInput
+        style={styles.input}
+        placeholder="Nombre"
+        placeholderTextColor="#888"
+        value={nombre}
+        onChangeText={setNombre}
+      />
 
-      <Button title="Guardar Medidas" onPress={saveMeasurements} />
-    </ScrollView>
+      <TextInput
+        style={styles.input}
+        placeholder="Altura (cm)"
+        placeholderTextColor="#888"
+        keyboardType="numeric"
+        value={altura}
+        onChangeText={setAltura}
+      />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Peso (kg)"
+        placeholderTextColor="#888"
+        keyboardType="numeric"
+        value={peso}
+        onChangeText={setPeso}
+      />
+
+      <Button title="Guardar" onPress={guardar} />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#000",
+    padding: 20,
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: "600",
+    color: "#fff",
+    marginBottom: 20,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#333",
+    backgroundColor: "#111",
+    padding: 12,
+    borderRadius: 8,
+    color: "#fff",
+    marginBottom: 15,
+  },
+});
